@@ -193,10 +193,53 @@ def cuidar_do_direct(meu_id):
     return enviados
 
 
+def listar_pendentes(meu_id):
+    """Para o Claude: conversas do robô com resposta solta esperando resposta."""
+    r = chamar("/me/conversations", {"platform": "instagram", "limit": 25,
+                                      "fields": "updated_time,messages.limit(8){message,from,created_time}"})
+    pendentes = []
+    for conv in r.get("data", []):
+        if AGORA - data(conv["updated_time"]) > timedelta(hours=23):
+            continue
+        msgs = conv.get("messages", {}).get("data", [])
+        if not msgs or msgs[0]["from"]["id"] == meu_id:
+            continue
+        ultima_nossa = next((m for m in msgs if m["from"]["id"] == meu_id), None)
+        etapa = etapa_da_mensagem(ultima_nossa.get("message")) if ultima_nossa else None
+        if not etapa:
+            continue
+        if etapa["id"] != ROTEIRO["saida"]["id"] and resposta_curta_ou_botao(msgs[0].get("message"), etapa) \
+                and proxima_etapa(etapa) is not None:
+            continue  # o robô cuida
+        pendentes.append({
+            "pessoa_id": msgs[0]["from"]["id"], "username": msgs[0]["from"].get("username"),
+            "ultima_etapa_do_robo": etapa["id"],
+            "proxima_etapa": (proxima_etapa(etapa) or {}).get("id"),
+            "conversa": [{"de": "eu" if m["from"]["id"] == meu_id else "pessoa", "texto": m.get("message"),
+                          "quando": m["created_time"]} for m in reversed(msgs)],
+        })
+    print(json.dumps(pendentes, ensure_ascii=False, indent=1))
+
+
+def responder(pessoa_id, texto=None, etapa_id=None):
+    """Para o Claude: manda um texto livre e/ou uma etapa do roteiro."""
+    if texto:
+        chamar(f"/{USER_ID}/messages", corpo={"recipient": {"id": pessoa_id}, "message": {"text": texto}})
+    if etapa_id:
+        etapa = next(e for e in ROTEIRO["etapas"] + [ROTEIRO["saida"]] if e["id"] == etapa_id)
+        enviar({"id": pessoa_id}, etapa)
+    print("enviado")
+
+
 def main():
     if not TOKEN or not USER_ID:
         sys.exit("Faltam IG_ACCESS_TOKEN e IG_USER_ID.")
     eu = chamar("/me", {"fields": "user_id,username"})
+    if len(sys.argv) > 1 and sys.argv[1] == "--pendentes":
+        return listar_pendentes(eu["user_id"])
+    if len(sys.argv) > 1 and sys.argv[1] == "--responder":
+        # uso: --responder PESSOA_ID "texto livre" [ETAPA_ID]
+        return responder(sys.argv[2], sys.argv[3] or None, sys.argv[4] if len(sys.argv) > 4 else None)
     c = cuidar_dos_comentarios(eu["username"])
     d = cuidar_do_direct(eu["user_id"])
     print(f"Comentários respondidos: {c}. Mensagens do Direct enviadas: {d}.")
