@@ -100,6 +100,14 @@ def resposta_negativa(texto, etapa):
     return t in {"NAO", "NAO QUERO", "NAO OBRIGADO", "NAO OBRIGADA", "AGORA NAO"} or t.startswith("NAO ")
 
 
+def resposta_curta_ou_botao(texto, etapa):
+    """Botão ou resposta curta ("sim", "quero muito") o robô segue sozinho."""
+    t = normalizar(texto)
+    if t in {normalizar(b) for b in etapa.get("botoes", [])}:
+        return True
+    return bool(t) and len(t.split()) <= 4 and "?" not in (texto or "")
+
+
 def conversa_do_usuario(igsid):
     r = chamar("/me/conversations", {"platform": "instagram", "user_id": igsid,
                                       "fields": "messages.limit(10){message,from,created_time}"})
@@ -166,6 +174,8 @@ def cuidar_do_direct(meu_id):
         if not etapa or etapa["id"] == ROTEIRO["saida"]["id"]:
             continue  # conversa que não é do robô, ou já encerrada
         resposta = msgs[0].get("message") or ""
+        if not resposta_curta_ou_botao(resposta, etapa):
+            continue  # resposta solta: quem responde é o Claude, na checagem de hora em hora
         if resposta_negativa(resposta, etapa):
             seguinte = ROTEIRO["saida"]
         else:
