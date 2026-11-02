@@ -1,0 +1,48 @@
+{
+  "palavras_chave": ["QUERO", "PROSPERAR"],
+  "resposta_comentario": "Te mandei o PDF no Direct! 🙏",
+  "etapas": [
+    {
+      "id": "1-pdf",
+      "marcas": ["Que bom que você quis o PDF", "Depois me conta o que mais falou com você?"],
+      "texto": "Que bom que você quis o PDF! Ele vai te ajudar bastante. 🙏\n\nAqui estão os 4 passos que a Bíblia ensina para você alcançar os seus objetivos, com os versículos de cada um:\nhttps://brunocorvino.github.io/instagram-midia/4-passos/\n\nAgora me conta: você está passando por alguma dificuldade financeira hoje?",
+      "botoes": ["Sim", "Um pouco", "Não"]
+    },
+    {
+      "id": "2-acredita",
+      "marcas": ["você acredita que a Bíblia pode te ajudar a prosperar?"],
+      "texto": "Obrigado por me contar. Muita gente que me escreve passa por isso, e mesmo quem está bem quer crescer mais. Foi por isso que eu reuni esse material.\n\nMe diz uma coisa: você acredita que a Bíblia pode te ajudar a prosperar?",
+      "botoes": ["Sim, acredito", "Talvez", "Não sei"]
+    },
+    {
+      "id": "3-fazer-tambem",
+      "marcas": ["Você gostaria de fazer isso também?"],
+      "texto": "Eu acredito muito. E sabe o que eu percebi? Muitas vezes a gente não buscou o conhecimento do jeito claro que Deus explicou. O caminho está na Bíblia, mas pouca gente aprendeu a entender e aplicar.\n\nJá vi pessoas mudarem a vida financeira quando entenderam isso, com fé e com atitude. Você gostaria de fazer isso também?",
+      "botoes": ["Sim", "Talvez", "Não"],
+      "sair_se_nao": true
+    },
+    {
+      "id": "4-material",
+      "marcas": ["Você gostaria de receber esse material?"],
+      "texto": "Então eu tenho uma coisa para você. Eu fiz um compilado das passagens da Bíblia que ensinam sobre prosperidade. Cada uma tem a mesma estrutura do PDF: o ensinamento, a explicação, a oração e a atitude que você deve ter.\n\nÉ uma página por dia, de 2 a 5 minutos, para você criar esse entendimento e colocar em prática. Quem fica na Palavra e segue esses passos todo dia vai crescendo.\n\nVocê gostaria de receber esse material?",
+      "botoes": ["Sim, quero", "Quero saber mais", "Não"],
+      "sair_se_nao": true
+    },
+    {
+      "id": "5-quanto-vale",
+      "marcas": ["Quanto você acha que vale um material assim"],
+      "texto": "Imagina ter isso na palma da sua mão, para ler todo dia e aplicar na sua vida.\n\nQuanto você acha que vale um material assim?",
+      "botoes": ["R$ 97", "R$ 47", "R$ 27"]
+    },
+    {
+      "id": "6-oferta",
+      "marcas": ["Tenha Fé e Enriqueça: O Segredo Bíblico para a Riqueza"],
+      "texto": "Ele se chama Tenha Fé e Enriqueça: O Segredo Bíblico para a Riqueza. E a gente está ajudando as pessoas por apenas R$ 19,90 à vista, ou 2x de R$ 10,47.\n\nÉ seu para sempre, na tela do seu celular. Uma página por dia: você lê, entende e aplica. Depois de 30 dias, me conta o que mudou? 🙏\n\nÉ só entrar aqui:\nhttps://pay.hotmart.com/T101928457G?bid=1793647522432"
+    }
+  ],
+  "saida": {
+    "id": "saida",
+    "marcas": ["Fica com o PDF e, quando quiser conversar"],
+    "texto": "Tudo bem! Fica com o PDF e, quando quiser conversar, é só me chamar aqui. Deus te abençoe. 🙏"
+  }
+}
