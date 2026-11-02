@@ -17,7 +17,7 @@
     {
       "id": "3-fazer-tambem",
       "marcas": ["Você gostaria de fazer isso também?"],
-      "texto": "Eu acredito muito. Já vi pessoas mudarem a vida financeira quando aprenderam a aplicar as Escrituras no dia a dia, com fé e com atitude.\n\nVocê gostaria de fazer isso também?",
+      "texto": "Eu acredito muito. E sabe o que eu percebi? Muitas vezes a gente não buscou o conhecimento do jeito claro que Deus explicou. O caminho está na Bíblia, mas pouca gente aprendeu a entender e aplicar.\n\nJá vi pessoas mudarem a vida financeira quando entenderam isso, com fé e com atitude. Você gostaria de fazer isso também?",
       "botoes": ["Sim", "Talvez", "Não"],
       "sair_se_nao": true
     },
